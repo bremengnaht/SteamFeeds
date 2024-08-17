@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="749"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="S9E-BU-JiA">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="S9E-BU-JiA">
                                 <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
@@ -40,6 +40,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="1JW-QB-GlE"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="S9E-BU-JiA" id="rEJ-gi-f0D"/>
                         <outlet property="addNewFavoriteApp" destination="1JW-QB-GlE" id="xEH-1b-qyE"/>
                         <outlet property="favortedAppTableView" destination="Mxb-9r-QUw" id="HdJ-bJ-gFy"/>
                         <outlet property="settingButton" destination="0se-QA-SOK" id="iFX-gP-fCP"/>

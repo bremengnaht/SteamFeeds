@@ -12,6 +12,7 @@ class FavoritedAppsViewController: UIViewController {
     @IBOutlet weak var settingButton: UIBarButtonItem!
     @IBOutlet weak var addNewFavoriteApp: UIBarButtonItem!
     @IBOutlet weak var favortedAppTableView: UITableView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     var favoritedAppsFetchedResultController: NSFetchedResultsController<SteamApp>!
     
@@ -20,13 +21,15 @@ class FavoritedAppsViewController: UIViewController {
         
         checkIsFirstTime()
         fetchFavoritedAppFromCoreData()
-        
     }
     
     func toggleControllers(isDownloadingAllApp: Bool) {
-        settingButton.isEnabled = !isDownloadingAllApp
-        addNewFavoriteApp.isEnabled = !isDownloadingAllApp
-        favortedAppTableView.isHidden = isDownloadingAllApp
+        DispatchQueue.main.async {
+            self.settingButton.isEnabled = !isDownloadingAllApp
+            self.addNewFavoriteApp.isEnabled = !isDownloadingAllApp
+            self.favortedAppTableView.isHidden = isDownloadingAllApp
+            self.activityIndicatorView.isHidden = !isDownloadingAllApp
+        }
     }
 }
 
@@ -57,7 +60,7 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
     func fetchFavoritedAppFromCoreData() {
         let fetchRequest: NSFetchRequest<SteamApp> = SteamApp.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "favoriteDate", ascending: false)
-        let predicate = NSPredicate(format: "isFavorited == %@", true)
+        let predicate = NSPredicate(format: "isFavorited == %d", true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         fetchRequest.predicate = predicate
         favoritedAppsFetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataController.shared.viewContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -79,7 +82,7 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
-// MARK: - Steam APIs
+// MARK: - Steam API
 
 extension FavoritedAppsViewController {
     
@@ -87,8 +90,18 @@ extension FavoritedAppsViewController {
         toggleControllers(isDownloadingAllApp: true)
         SteamAPIService.getAppList { result in
             switch result {
-            case .success(let appListRes):
-                print("Get App List Success")
+            case let .success(appListRes):
+                if let appList = appListRes.appList?.apps {
+                    for app in appList {
+                        let newApp = SteamApp(context: CoreDataController.shared.viewContext)
+                        newApp.appId = app.appId
+                        newApp.isFavorited = false
+                        newApp.appName = app.name
+                    }
+                    self.saveContexts()
+                } else {
+                    self.showAlert(title: "Error", message: "Something wrong with Steam's API. Please fetch again from Setting OR restart the app!")
+                }
                 break
             case .failure(let error):
                 self.showAlert(title: "Error", message: error.localizedDescription)

@@ -8,7 +8,7 @@
 import Foundation
 
 struct APIResponseGetAppList: Codable {
-    let appList: APIResponseApps
+    let appList: APIResponseApps?
     
     enum CodingKeys: String, CodingKey {
         case appList = "applist"
@@ -16,7 +16,7 @@ struct APIResponseGetAppList: Codable {
 }
 
 struct APIResponseApps: Codable {
-    let apps: [APIResponseApp]
+    let apps: [APIResponseApp]?
 }
 
 struct APIResponseApp: Codable {
