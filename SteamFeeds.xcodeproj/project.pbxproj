@@ -83,9 +83,9 @@
 		2AF9998E2C6F9F44006C9F68 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2AF999802C6F9D23006C9F68 /* SteamFeeds.xcdatamodeld */,
+				2AF999A02C70E0CD006C9F68 /* Struct */,
 				2AF999932C704C5D006C9F68 /* CoreDataController.swift */,
-				2AF999982C705390006C9F68 /* APIResponseGetAppList.swift */,
+				2AF999802C6F9D23006C9F68 /* SteamFeeds.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,6 +115,14 @@
 				2AF999962C7050CF006C9F68 /* SteamAPIService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		2AF999A02C70E0CD006C9F68 /* Struct */ = {
+			isa = PBXGroup;
+			children = (
+				2AF999982C705390006C9F68 /* APIResponseGetAppList.swift */,
+			);
+			path = Struct;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

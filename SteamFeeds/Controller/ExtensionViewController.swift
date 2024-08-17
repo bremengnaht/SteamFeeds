@@ -16,4 +16,13 @@ extension UIViewController {
         self.present(alertVC, animated: true)
     }
     
+    /// Save context
+    func saveContexts() {
+        do {
+            try CoreDataController.shared.viewContext.save()
+        } catch {
+            showAlert(title: "Error", message: "Failed to save item(s): \(error)")
+            fatalError("Failed to save item(s): \(error)")
+        }
+    }
 }
