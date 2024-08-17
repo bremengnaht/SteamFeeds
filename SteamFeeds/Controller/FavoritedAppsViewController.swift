@@ -90,7 +90,7 @@ extension FavoritedAppsViewController {
                     for app in appList {
                         let newApp = SteamApp(context: CoreDataController.shared.viewContext)
                         newApp.appId = app.appId
-                        newApp.isFavorited = false
+                        newApp.isFavorited = true
                         newApp.appName = app.name
                     }
                     self.saveContexts()

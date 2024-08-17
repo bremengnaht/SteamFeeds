@@ -19,6 +19,7 @@
 		2AF9999B2C7056F4006C9F68 /* FavoritedAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9999A2C7056F4006C9F68 /* FavoritedAppsViewController.swift */; };
 		2AF9999D2C7057AB006C9F68 /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9999C2C7057AB006C9F68 /* ExtensionViewController.swift */; };
 		2AF9999F2C70A3D2006C9F68 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9999E2C70A3D2006C9F68 /* SettingViewController.swift */; };
+		2AF999A22C70E1B5006C9F68 /* FavoritedAppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999A12C70E1B5006C9F68 /* FavoritedAppTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		2AF9999A2C7056F4006C9F68 /* FavoritedAppsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritedAppsViewController.swift; sourceTree = "<group>"; };
 		2AF9999C2C7057AB006C9F68 /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
 		2AF9999E2C70A3D2006C9F68 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		2AF999A12C70E1B5006C9F68 /* FavoritedAppTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritedAppTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				2AF999982C705390006C9F68 /* APIResponseGetAppList.swift */,
+				2AF999A12C70E1B5006C9F68 /* FavoritedAppTableViewCell.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				2AF9999B2C7056F4006C9F68 /* FavoritedAppsViewController.swift in Sources */,
 				2AF9999D2C7057AB006C9F68 /* ExtensionViewController.swift in Sources */,
 				2AF9999F2C70A3D2006C9F68 /* SettingViewController.swift in Sources */,
+				2AF999A22C70E1B5006C9F68 /* FavoritedAppTableViewCell.swift in Sources */,
 				2AF999942C704C5D006C9F68 /* CoreDataController.swift in Sources */,
 				2AF999782C6F9D23006C9F68 /* AppDelegate.swift in Sources */,
 				2AF9997A2C6F9D23006C9F68 /* SceneDelegate.swift in Sources */,
