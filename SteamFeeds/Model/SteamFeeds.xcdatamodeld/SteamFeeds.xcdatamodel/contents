@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23G93" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="App" representedClassName="App" syncable="YES" codeGenerationType="class">
+    <entity name="SteamApp" representedClassName="SteamApp" syncable="YES" codeGenerationType="class">
         <attribute name="appId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="globalAppList" maxCount="1" deletionRule="Nullify" destinationEntity="GlobalAppList" inverseName="apps" inverseEntity="GlobalAppList"/>
-    </entity>
-    <entity name="GlobalAppList" representedClassName="GlobalAppList" syncable="YES" codeGenerationType="class">
-        <attribute name="lastFetchTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="apps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="App" inverseName="globalAppList" inverseEntity="App"/>
+        <attribute name="favoriteDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isFavorited" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
     </entity>
 </model>

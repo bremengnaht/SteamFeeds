@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bug-M9-Kkd">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -8,23 +8,68 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favorited Apps View Controller-->
+        <!--Favorited Apps-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="FavoritedAppsViewController" customModule="SteamFeeds" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Mxb-9r-QUw">
+                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="S9E-BU-JiA">
+                                <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Mxb-9r-QUw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3IT-5B-qc0"/>
+                            <constraint firstItem="S9E-BU-JiA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="D6C-EV-nLs"/>
+                            <constraint firstItem="Mxb-9r-QUw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="P6j-35-vvt"/>
+                            <constraint firstItem="S9E-BU-JiA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="h4y-4y-2hH"/>
+                            <constraint firstItem="Mxb-9r-QUw" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="lfo-jo-Wct"/>
+                            <constraint firstItem="Mxb-9r-QUw" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="puG-fd-1Bs"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Favorited Apps" id="Mh6-Vx-trB">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="gearshape.fill" catalog="system" id="0se-QA-SOK"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1JW-QB-GlE"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addNewFavoriteApp" destination="1JW-QB-GlE" id="xEH-1b-qyE"/>
+                        <outlet property="favortedAppTableView" destination="Mxb-9r-QUw" id="HdJ-bJ-gFy"/>
+                        <outlet property="settingButton" destination="0se-QA-SOK" id="iFX-gP-fCP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="126" y="-2"/>
+            <point key="canvasLocation" x="1052.6717557251909" y="-2.1126760563380285"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6DK-o8-ABv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bug-M9-Kkd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="b5Q-yt-cmi">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="zt0-R7-m7q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="irK-hP-TKq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="125.95419847328243" y="-2.1126760563380285"/>
         </scene>
     </scenes>
     <resources>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
