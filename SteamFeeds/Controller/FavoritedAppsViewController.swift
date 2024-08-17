@@ -23,6 +23,10 @@ class FavoritedAppsViewController: UIViewController {
         fetchFavoritedAppFromCoreData()
     }
     
+    @IBAction func openSetting(_ sender: Any) {
+        performSegue(withIdentifier: "settingSegueIndentifier", sender: nil)
+    }
+    
     func toggleControllers(isDownloadingAllApp: Bool) {
         DispatchQueue.main.async {
             self.settingButton.isEnabled = !isDownloadingAllApp
