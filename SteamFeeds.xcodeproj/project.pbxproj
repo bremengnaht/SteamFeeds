@@ -14,6 +14,7 @@
 		2AF999822C6F9D23006C9F68 /* SteamFeeds.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999802C6F9D23006C9F68 /* SteamFeeds.xcdatamodeld */; };
 		2AF999842C6F9D24006C9F68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AF999832C6F9D24006C9F68 /* Assets.xcassets */; };
 		2AF999872C6F9D24006C9F68 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2AF999862C6F9D24006C9F68 /* Base */; };
+		2AF999942C704C5D006C9F68 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999932C704C5D006C9F68 /* CoreDataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		2AF999832C6F9D24006C9F68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AF999862C6F9D24006C9F68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AF999882C6F9D24006C9F68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AF999932C704C5D006C9F68 /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				2AF999802C6F9D23006C9F68 /* SteamFeeds.xcdatamodeld */,
+				2AF999932C704C5D006C9F68 /* CoreDataController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			files = (
 				2AF999822C6F9D23006C9F68 /* SteamFeeds.xcdatamodeld in Sources */,
 				2AF9997C2C6F9D23006C9F68 /* ViewController.swift in Sources */,
+				2AF999942C704C5D006C9F68 /* CoreDataController.swift in Sources */,
 				2AF999782C6F9D23006C9F68 /* AppDelegate.swift in Sources */,
 				2AF9997A2C6F9D23006C9F68 /* SceneDelegate.swift in Sources */,
 			);
