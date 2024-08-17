@@ -9,25 +9,31 @@
 /* Begin PBXBuildFile section */
 		2AF999782C6F9D23006C9F68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999772C6F9D23006C9F68 /* AppDelegate.swift */; };
 		2AF9997A2C6F9D23006C9F68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999792C6F9D23006C9F68 /* SceneDelegate.swift */; };
-		2AF9997C2C6F9D23006C9F68 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9997B2C6F9D23006C9F68 /* ViewController.swift */; };
 		2AF9997F2C6F9D23006C9F68 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2AF9997E2C6F9D23006C9F68 /* Base */; };
 		2AF999822C6F9D23006C9F68 /* SteamFeeds.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999802C6F9D23006C9F68 /* SteamFeeds.xcdatamodeld */; };
 		2AF999842C6F9D24006C9F68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AF999832C6F9D24006C9F68 /* Assets.xcassets */; };
 		2AF999872C6F9D24006C9F68 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2AF999862C6F9D24006C9F68 /* Base */; };
 		2AF999942C704C5D006C9F68 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999932C704C5D006C9F68 /* CoreDataController.swift */; };
+		2AF999972C7050CF006C9F68 /* SteamAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999962C7050CF006C9F68 /* SteamAPIService.swift */; };
+		2AF999992C705390006C9F68 /* APIResponseGetAppList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999982C705390006C9F68 /* APIResponseGetAppList.swift */; };
+		2AF9999B2C7056F4006C9F68 /* FavoritedFeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9999A2C7056F4006C9F68 /* FavoritedFeedsViewController.swift */; };
+		2AF9999D2C7057AB006C9F68 /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9999C2C7057AB006C9F68 /* ExtensionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2AF999742C6F9D23006C9F68 /* SteamFeeds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteamFeeds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF999772C6F9D23006C9F68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AF999792C6F9D23006C9F68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2AF9997B2C6F9D23006C9F68 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2AF9997E2C6F9D23006C9F68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2AF999812C6F9D23006C9F68 /* SteamFeeds.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SteamFeeds.xcdatamodel; sourceTree = "<group>"; };
 		2AF999832C6F9D24006C9F68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AF999862C6F9D24006C9F68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AF999882C6F9D24006C9F68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AF999932C704C5D006C9F68 /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
+		2AF999962C7050CF006C9F68 /* SteamAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamAPIService.swift; sourceTree = "<group>"; };
+		2AF999982C705390006C9F68 /* APIResponseGetAppList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseGetAppList.swift; sourceTree = "<group>"; };
+		2AF9999A2C7056F4006C9F68 /* FavoritedFeedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritedFeedsViewController.swift; sourceTree = "<group>"; };
+		2AF9999C2C7057AB006C9F68 /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,7 @@
 				2AF999902C6F9F51006C9F68 /* Controller */,
 				2AF9998F2C6F9F4A006C9F68 /* View */,
 				2AF9998E2C6F9F44006C9F68 /* Model */,
+				2AF999952C7050A4006C9F68 /* Services */,
 				2AF999772C6F9D23006C9F68 /* AppDelegate.swift */,
 				2AF999792C6F9D23006C9F68 /* SceneDelegate.swift */,
 				2AF999832C6F9D24006C9F68 /* Assets.xcassets */,
@@ -76,6 +83,7 @@
 			children = (
 				2AF999802C6F9D23006C9F68 /* SteamFeeds.xcdatamodeld */,
 				2AF999932C704C5D006C9F68 /* CoreDataController.swift */,
+				2AF999982C705390006C9F68 /* APIResponseGetAppList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -92,9 +100,18 @@
 		2AF999902C6F9F51006C9F68 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2AF9997B2C6F9D23006C9F68 /* ViewController.swift */,
+				2AF9999A2C7056F4006C9F68 /* FavoritedFeedsViewController.swift */,
+				2AF9999C2C7057AB006C9F68 /* ExtensionViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		2AF999952C7050A4006C9F68 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2AF999962C7050CF006C9F68 /* SteamAPIService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,7 +186,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AF999822C6F9D23006C9F68 /* SteamFeeds.xcdatamodeld in Sources */,
-				2AF9997C2C6F9D23006C9F68 /* ViewController.swift in Sources */,
+				2AF999972C7050CF006C9F68 /* SteamAPIService.swift in Sources */,
+				2AF999992C705390006C9F68 /* APIResponseGetAppList.swift in Sources */,
+				2AF9999B2C7056F4006C9F68 /* FavoritedFeedsViewController.swift in Sources */,
+				2AF9999D2C7057AB006C9F68 /* ExtensionViewController.swift in Sources */,
 				2AF999942C704C5D006C9F68 /* CoreDataController.swift in Sources */,
 				2AF999782C6F9D23006C9F68 /* AppDelegate.swift in Sources */,
 				2AF9997A2C6F9D23006C9F68 /* SceneDelegate.swift in Sources */,
