@@ -14,6 +14,7 @@ class AddNewViewController: UIViewController {
     
     var steamApps: [SteamApp] = []
     var currentSearchResult: [SteamApp] = []
+    var searchWorkItem: DispatchWorkItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,9 +62,9 @@ extension AddNewViewController: UITableViewDelegate, UITableViewDataSource {
         let selectedRow = currentSearchResult[indexPath.row]
         if selectedRow.isFavorited {
             showAlert(title: "Ug uh !!!", message: "This game is already favorited")
+            tableView.deselectRow(at: indexPath, animated: true)
             return
         }
-        
         selectedRow.isFavorited = true
         selectedRow.favoriteDate = Date()
         saveContexts()
@@ -77,21 +78,29 @@ extension AddNewViewController: UITableViewDelegate, UITableViewDataSource {
 extension AddNewViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        /// Process in other thread to prevent impatch to user experience
-        DispatchQueue.global(qos: .default).async {
-            var searchResult: [SteamApp] = []
-            if searchText != "" {
-                searchResult = self.steamApps.filter({ app in
-                    if let appName = app.appName {
-                        return appName.lowercased().contains(searchText.lowercased())
-                    }
-                    return false
-                })
-            }
-            DispatchQueue.main.async {
-                self.currentSearchResult = searchResult
-                self.tableView.reloadData()
-            }
+        // Cancel the previous work item if it exists
+        searchWorkItem?.cancel()
+        // Create a new work item with the debounced task
+        let workItem = DispatchWorkItem { [weak self] in
+            self?.performSearch(with: searchText)
+        }
+        // Store the new work item and execute it after a delay
+        searchWorkItem = workItem
+        // 0.5 second debounce
+        DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 0.5, execute: workItem)
+    }
+    
+    private func performSearch(with query: String) {
+        if query != "" {
+            self.currentSearchResult = self.steamApps.filter({ app in
+                if let appName = app.appName {
+                    return appName.lowercased().contains(query.lowercased())
+                }
+                return false
+            })
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
     
