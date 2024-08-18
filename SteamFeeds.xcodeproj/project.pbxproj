@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2ABA76032C722B260019B2D9 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA76022C722B260019B2D9 /* NewsViewController.swift */; };
 		2ABA76052C722CD70019B2D9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA76042C722CD70019B2D9 /* DetailViewController.swift */; };
+		2ABA76072C7245C30019B2D9 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA76062C7245C30019B2D9 /* NewsTableViewCell.swift */; };
 		2AF999782C6F9D23006C9F68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999772C6F9D23006C9F68 /* AppDelegate.swift */; };
 		2AF9997A2C6F9D23006C9F68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999792C6F9D23006C9F68 /* SceneDelegate.swift */; };
 		2AF9997F2C6F9D23006C9F68 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2AF9997E2C6F9D23006C9F68 /* Base */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		2ABA76022C722B260019B2D9 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		2ABA76042C722CD70019B2D9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		2ABA76062C7245C30019B2D9 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		2AF999742C6F9D23006C9F68 /* SteamFeeds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteamFeeds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF999772C6F9D23006C9F68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AF999792C6F9D23006C9F68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				2AF999982C705390006C9F68 /* APIResponseGetAppList.swift */,
 				2AF999A12C70E1B5006C9F68 /* FavoritedAppTableViewCell.swift */,
 				2AF999A52C71E3C8006C9F68 /* AddNewTableViewCell.swift */,
+				2ABA76062C7245C30019B2D9 /* NewsTableViewCell.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			files = (
 				2AF999A42C71DD4D006C9F68 /* AddNewViewController.swift in Sources */,
 				2AF999822C6F9D23006C9F68 /* SteamFeeds.xcdatamodeld in Sources */,
+				2ABA76072C7245C30019B2D9 /* NewsTableViewCell.swift in Sources */,
 				2AF999A62C71E3C8006C9F68 /* AddNewTableViewCell.swift in Sources */,
 				2AF999972C7050CF006C9F68 /* SteamAPIService.swift in Sources */,
 				2AF999992C705390006C9F68 /* APIResponseGetAppList.swift in Sources */,
