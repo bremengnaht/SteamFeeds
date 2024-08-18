@@ -18,6 +18,7 @@ class FavoritedAppsViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        favoritedAppTableView.dataSource = self
         favoritedAppTableView.delegate = self
         
         fetchFavoritedAppFromCoreData()
@@ -32,12 +33,15 @@ class FavoritedAppsViewController: UIViewController, UITableViewDelegate, UITabl
         DispatchQueue.main.async {
             self.settingButton.isEnabled = !isDownloadingAllApp
             self.addNewFavoriteApp.isEnabled = !isDownloadingAllApp
-            self.favoritedAppTableView.isHidden = isDownloadingAllApp
-            self.activityIndicatorView.isHidden = !isDownloadingAllApp
+            if isDownloadingAllApp {
+                self.activityIndicatorView.startAnimating()
+            } else {
+                self.activityIndicatorView.stopAnimating()
+            }
         }
     }
     
-    func refreshTableOnMainThread() {
+    func refreshTable() {
         DispatchQueue.main.async {
             self.favoritedAppTableView.reloadData()
         }
@@ -73,6 +77,24 @@ extension FavoritedAppsViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "viewDetailSegueIndentifier", sender: favoritedAppsFetchedResultController.fetchedObjects![indexPath.row])
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let customButton = UIContextualAction(style: .destructive, title: "") { (action, view, completionHandler) in
+            // TODO: Implement delete context
+        }
+        customButton.backgroundColor = .red
+        customButton.image = UIImage(systemName: "trash")
+        
+        let configuration = UISwipeActionsConfiguration(actions: [customButton])
+        configuration.performsFirstActionWithFullSwipe = false
+        
+        return configuration
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
 }
 
 // MARK: - Core Data
@@ -89,7 +111,7 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
         favoritedAppsFetchedResultController.delegate = self
         do {
             try favoritedAppsFetchedResultController.performFetch()
-            refreshTableOnMainThread()
+            refreshTable()
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -115,6 +137,10 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
         }
     }
     
+    func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>, didChangeContentWith diff: CollectionDifference<NSManagedObjectID>) {
+        print("Something change")
+    }
+    
 }
 
 // MARK: - Steam API
@@ -128,6 +154,9 @@ extension FavoritedAppsViewController {
             case let .success(appListRes):
                 if let appList = appListRes.appList?.apps {
                     for app in appList {
+                        // App with no name will be removed
+                        if app.name == "" { continue }
+                        
                         let newApp = SteamApp(context: CoreDataController.shared.viewContext)
                         newApp.appId = app.appId
                         
@@ -139,18 +168,15 @@ extension FavoritedAppsViewController {
                         newApp.appName = app.name
                     }
                     self.saveContexts()
-                    self.toggleControllers(isDownloadingAllApp: false)
-                    self.refreshTableOnMainThread()
                 } else {
                     self.showAlert(title: "Error", message: "Something wrong with Steam's API. Please fetch again from Setting OR restart the app!")
-                    self.toggleControllers(isDownloadingAllApp: false)
                 }
                 break
             case .failure(let error):
                 self.showAlert(title: "Error", message: error.localizedDescription)
-                self.toggleControllers(isDownloadingAllApp: false)
                 break
             }
+            self.toggleControllers(isDownloadingAllApp: false)
         }
     }
 }
