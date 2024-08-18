@@ -178,8 +178,8 @@ extension FavoritedAppsViewController {
                         newApp.appName = app.name
                         newApp.isFavorited = false
                     }
+                    self.toggleControllersOnMainThread(isDownloadingAllApp: false)
                     self.saveContexts()
-                    
                 } else {
                     self.toggleControllersOnMainThread(isDownloadingAllApp: false)
                     self.showAlert(title: "Error", message: "Something wrong with Steam's API. Please fetch again from Setting OR restart the app!")
