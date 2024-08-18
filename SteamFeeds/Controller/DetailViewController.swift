@@ -8,6 +8,8 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    var news: News!
 
     override func viewDidLoad() {
         super.viewDidLoad()

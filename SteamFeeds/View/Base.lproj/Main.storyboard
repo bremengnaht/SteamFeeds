@@ -272,6 +272,9 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Rsf-hw-L6C">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Y9s-aG-BpE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -279,18 +282,21 @@
                             <constraint firstItem="b2M-xU-ch5" firstAttribute="leading" secondItem="Y9s-aG-BpE" secondAttribute="leading" id="3uC-aV-D79"/>
                             <constraint firstItem="b2M-xU-ch5" firstAttribute="bottom" secondItem="a7I-qj-hJ8" secondAttribute="bottom" id="IGh-F8-eO2"/>
                             <constraint firstItem="b2M-xU-ch5" firstAttribute="trailing" secondItem="Y9s-aG-BpE" secondAttribute="trailing" id="fcA-Sy-lxl"/>
+                            <constraint firstItem="Rsf-hw-L6C" firstAttribute="centerX" secondItem="a7I-qj-hJ8" secondAttribute="centerX" id="goU-ao-Hg4"/>
+                            <constraint firstItem="Rsf-hw-L6C" firstAttribute="centerY" secondItem="a7I-qj-hJ8" secondAttribute="centerY" id="lu6-K2-hA6"/>
                             <constraint firstItem="b2M-xU-ch5" firstAttribute="top" secondItem="Y9s-aG-BpE" secondAttribute="top" id="nzh-p9-E7z"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fhn-vz-FRf"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="Rsf-hw-L6C" id="rAH-BY-Ehd"/>
                         <outlet property="tableView" destination="b2M-xU-ch5" id="4UC-4r-v3k"/>
                         <segue destination="Ucs-ts-hce" kind="show" identifier="showDetailSegueIndentifier" id="5Ue-Qw-uLI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nkP-9P-Ufb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2047" y="736"/>
+            <point key="canvasLocation" x="2046.376811594203" y="735.9375"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="4wf-wQ-Ca6">

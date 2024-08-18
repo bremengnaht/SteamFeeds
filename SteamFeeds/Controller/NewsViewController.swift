@@ -10,6 +10,7 @@ import CoreData
 
 class NewsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     var steamApp: SteamApp!
     var newsFetchedResultController: NSFetchedResultsController<News>!
@@ -21,11 +22,29 @@ class NewsViewController: UIViewController {
         tableView.delegate = self
 
         fetchNewsFromCoreData()
+        getLatestNewsFromAPI()
+    }
+    
+    func toggleControllersOnMainThread(isDownloadingNews: Bool) {
+        DispatchQueue.main.async {
+            if isDownloadingNews {
+                self.activityIndicatorView.startAnimating()
+            } else {
+                self.activityIndicatorView.stopAnimating()
+            }
+        }
     }
     
     func refreshTableOnMainThread() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailSegueIndentifier" {
+            let destination = segue.destination as! DetailViewController
+            destination.news = (sender as! News)
         }
     }
 
@@ -95,4 +114,44 @@ extension NewsViewController: NSFetchedResultsControllerDelegate {
         refreshTableOnMainThread()
     }
     
+}
+
+// MARK: - Steam API
+
+extension NewsViewController {
+    func getLatestNewsFromAPI() {
+        DispatchQueue.global(qos: .utility).async {
+            self.toggleControllersOnMainThread(isDownloadingNews: true)
+//            SteamAPIService.getAppList { result in
+//                self.getAppListCompletionHandler(result)
+//            }
+        }
+    }
+    
+//    func getAppListCompletionHandler(_ result: Result<APIResponseGetAppList, any Error>) {
+//        switch result {
+//        case let .success(appListRes):
+//            if let appList = appListRes.appList?.apps {
+//                for app in appList {
+//                    // App with no name will be removed
+//                    if app.name == "" { continue }
+//                    
+//                    let newApp = SteamApp(context: CoreDataController.shared.viewContext)
+//                    newApp.appId = app.appId
+//                    newApp.appName = app.name
+//                    newApp.isFavorited = false
+//                }
+//                self.toggleControllersOnMainThread(isDownloadingNews: false)
+//                self.saveContexts()
+//            } else {
+//                self.toggleControllersOnMainThread(isDownloadingNews: false)
+//                self.showAlert(title: "Error", message: "Something wrong with Steam's API. Please fetch again from Setting OR restart the app!")
+//            }
+//            break
+//        case .failure(let error):
+//            self.toggleControllersOnMainThread(isDownloadingNews: false)
+//            self.showAlert(title: "Error", message: error.localizedDescription)
+//            break
+//        }
+//    }
 }
