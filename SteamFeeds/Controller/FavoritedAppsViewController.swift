@@ -13,6 +13,7 @@ class FavoritedAppsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var addNewFavoriteApp: UIBarButtonItem!
     @IBOutlet weak var favoritedAppTableView: UITableView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var placeholderView: UIView!
     
     var favoritedAppsFetchedResultController: NSFetchedResultsController<SteamApp>!
     var favoritedApp: [SteamApp] = []
@@ -53,6 +54,7 @@ class FavoritedAppsViewController: UIViewController, UITableViewDelegate, UITabl
 extension FavoritedAppsViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        placeholderView.isHidden = favoritedApp.count != 0
         return favoritedApp.count
     }
     
@@ -173,12 +175,6 @@ extension FavoritedAppsViewController {
                         
                         let newApp = SteamApp(context: CoreDataController.shared.viewContext)
                         newApp.appId = app.appId
-                        
-                        // TODO: MOCK ONLY (remove later)
-                        newApp.isFavorited = true
-                        newApp.favoriteDate = Date()
-                        // TODO: END MOCK ONLY
-                        
                         newApp.appName = app.name
                     }
                     self.saveContexts()
