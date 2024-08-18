@@ -62,16 +62,20 @@ extension FavoritedAppsViewController {
         let data = favoritedApp[indexPath.row]
         cell.steamApp = data
         cell.applicationName.text = data.appName
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         cell.subscribeSince.text = "Subscribe since \(dateFormatter.string(from: data.favoriteDate!))"
+        
+        let newSelectionBackground = UIView()
+        newSelectionBackground.backgroundColor = .systemBlue
+        cell.selectedBackgroundView = newSelectionBackground
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "viewDetailSegueIndentifier", sender: favoritedApp[indexPath.row])
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
