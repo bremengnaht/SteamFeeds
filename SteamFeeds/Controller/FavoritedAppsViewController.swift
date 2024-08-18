@@ -15,6 +15,7 @@ class FavoritedAppsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     var favoritedAppsFetchedResultController: NSFetchedResultsController<SteamApp>!
+    var favoritedApp: [SteamApp] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,17 +54,13 @@ class FavoritedAppsViewController: UIViewController, UITableViewDelegate, UITabl
 extension FavoritedAppsViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let fetchedObjects = favoritedAppsFetchedResultController.fetchedObjects {
-            return fetchedObjects.count
-        } else {
-            return 0
-        }
+        return favoritedApp.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoritedTableViewCellReuseId", for: indexPath) as! FavoritedAppTableViewCell
         
-        let data = favoritedAppsFetchedResultController.fetchedObjects![indexPath.row]
+        let data = favoritedApp[indexPath.row]
         cell.steamApp = data
         cell.applicationName.text = data.appName
         
@@ -75,7 +72,7 @@ extension FavoritedAppsViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "viewDetailSegueIndentifier", sender: favoritedAppsFetchedResultController.fetchedObjects![indexPath.row])
+        performSegue(withIdentifier: "viewDetailSegueIndentifier", sender: favoritedApp[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -138,7 +135,10 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>, didChangeContentWith diff: CollectionDifference<NSManagedObjectID>) {
-        print("Something change")
+        guard let fetchedObjects = controller.fetchedObjects else { return }
+        
+        favoritedApp = fetchedObjects as! [SteamApp]
+        favoritedAppTableView.reloadData()
     }
     
 }
