@@ -20,6 +20,8 @@
 		2AF9999D2C7057AB006C9F68 /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9999C2C7057AB006C9F68 /* ExtensionViewController.swift */; };
 		2AF9999F2C70A3D2006C9F68 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9999E2C70A3D2006C9F68 /* SettingViewController.swift */; };
 		2AF999A22C70E1B5006C9F68 /* FavoritedAppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999A12C70E1B5006C9F68 /* FavoritedAppTableViewCell.swift */; };
+		2AF999A42C71DD4D006C9F68 /* AddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999A32C71DD4D006C9F68 /* AddNewViewController.swift */; };
+		2AF999A62C71E3C8006C9F68 /* AddNewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999A52C71E3C8006C9F68 /* AddNewTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		2AF9999C2C7057AB006C9F68 /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
 		2AF9999E2C70A3D2006C9F68 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2AF999A12C70E1B5006C9F68 /* FavoritedAppTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritedAppTableViewCell.swift; sourceTree = "<group>"; };
+		2AF999A32C71DD4D006C9F68 /* AddNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
+		2AF999A52C71E3C8006C9F68 /* AddNewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 				2AF9999A2C7056F4006C9F68 /* FavoritedAppsViewController.swift */,
 				2AF9999C2C7057AB006C9F68 /* ExtensionViewController.swift */,
 				2AF9999E2C70A3D2006C9F68 /* SettingViewController.swift */,
+				2AF999A32C71DD4D006C9F68 /* AddNewViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 			children = (
 				2AF999982C705390006C9F68 /* APIResponseGetAppList.swift */,
 				2AF999A12C70E1B5006C9F68 /* FavoritedAppTableViewCell.swift */,
+				2AF999A52C71E3C8006C9F68 /* AddNewTableViewCell.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -199,7 +205,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AF999A42C71DD4D006C9F68 /* AddNewViewController.swift in Sources */,
 				2AF999822C6F9D23006C9F68 /* SteamFeeds.xcdatamodeld in Sources */,
+				2AF999A62C71E3C8006C9F68 /* AddNewTableViewCell.swift in Sources */,
 				2AF999972C7050CF006C9F68 /* SteamAPIService.swift in Sources */,
 				2AF999992C705390006C9F68 /* APIResponseGetAppList.swift in Sources */,
 				2AF9999B2C7056F4006C9F68 /* FavoritedAppsViewController.swift in Sources */,

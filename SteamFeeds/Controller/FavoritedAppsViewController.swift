@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class FavoritedAppsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FavoritedAppsViewController: UIViewController {
     @IBOutlet weak var settingButton: UIBarButtonItem!
     @IBOutlet weak var addNewFavoriteApp: UIBarButtonItem!
     @IBOutlet weak var favoritedAppTableView: UITableView!
@@ -28,6 +28,10 @@ class FavoritedAppsViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func openSetting(_ sender: Any) {
         performSegue(withIdentifier: "settingSegueIndentifier", sender: nil)
+    }
+    
+    @IBAction func openAddNewApp(_ sender: Any) {
+        performSegue(withIdentifier: "newFavoriteSegueIndentifier", sender: nil)
     }
     
     func toggleControllersOnMainThread(isDownloadingAllApp: Bool) {
@@ -51,7 +55,7 @@ class FavoritedAppsViewController: UIViewController, UITableViewDelegate, UITabl
 
 // MARK: - UITableView
 
-extension FavoritedAppsViewController {
+extension FavoritedAppsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         placeholderView.isHidden = favoritedApp.count != 0
@@ -114,7 +118,7 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
     
     func fetchFavoritedAppFromCoreData() {
         let fetchRequest: NSFetchRequest<SteamApp> = SteamApp.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "favoriteDate", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "favoriteDate", ascending: true)
         let predicate = NSPredicate(format: "isFavorited == %d", true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         fetchRequest.predicate = predicate

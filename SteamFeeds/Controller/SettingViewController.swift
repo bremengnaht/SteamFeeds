@@ -16,6 +16,7 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func closeSetting(_ sender: Any) {
+        
         self.dismiss(animated: true)
     }
     
