@@ -157,14 +157,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Type game name" translatesAutoresizingMaskIntoConstraints="NO" id="xxf-zC-RuB">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="jJx-jt-pZL"/>
+                                </constraints>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="Yay-0J-Im4" id="nKk-hL-F9V"/>
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="14g-Om-QiH">
-                                <rect key="frame" x="0.0" y="56" width="414" height="830"/>
+                                <rect key="frame" x="0.0" y="80" width="414" height="806"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchTableViewCellReuseId" rowHeight="60" id="vMy-oi-Dqf" customClass="AddNewTableViewCell" customModule="SteamFeeds" customModuleProvider="target">
@@ -219,11 +222,10 @@
                         <constraints>
                             <constraint firstItem="14g-Om-QiH" firstAttribute="top" secondItem="xxf-zC-RuB" secondAttribute="bottom" id="FGx-az-GBq"/>
                             <constraint firstItem="xxf-zC-RuB" firstAttribute="trailing" secondItem="Smn-oN-4Fc" secondAttribute="trailing" id="POW-na-KU4"/>
-                            <constraint firstAttribute="bottom" secondItem="14g-Om-QiH" secondAttribute="bottom" id="PZf-jc-z2g"/>
+                            <constraint firstItem="14g-Om-QiH" firstAttribute="bottom" secondItem="TIL-Me-gj9" secondAttribute="bottom" id="PZf-jc-z2g"/>
                             <constraint firstItem="xxf-zC-RuB" firstAttribute="leading" secondItem="Smn-oN-4Fc" secondAttribute="leading" id="SFC-68-HhD"/>
-                            <constraint firstAttribute="trailing" secondItem="14g-Om-QiH" secondAttribute="trailing" id="aeY-6c-QyO"/>
+                            <constraint firstItem="14g-Om-QiH" firstAttribute="trailing" secondItem="Smn-oN-4Fc" secondAttribute="trailing" id="aeY-6c-QyO"/>
                             <constraint firstItem="xxf-zC-RuB" firstAttribute="top" secondItem="Smn-oN-4Fc" secondAttribute="top" id="h8S-YZ-5J7"/>
-                            <constraint firstItem="xxf-zC-RuB" firstAttribute="top" secondItem="Smn-oN-4Fc" secondAttribute="top" id="l5E-do-Hnu"/>
                             <constraint firstItem="14g-Om-QiH" firstAttribute="leading" secondItem="Smn-oN-4Fc" secondAttribute="leading" id="wFx-1M-5jU"/>
                         </constraints>
                     </view>
