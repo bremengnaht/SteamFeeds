@@ -75,8 +75,17 @@ extension FavoritedAppsViewController {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let customButton = UIContextualAction(style: .destructive, title: "") { (action, view, completionHandler) in
-            // TODO: Implement delete context
+        let customButton = UIContextualAction(style: .destructive, title: "") { (action, view, _) in
+            self.favoritedAppTableView.performBatchUpdates({
+                self.favoritedApp.remove(at: indexPath.row)
+                self.favoritedAppTableView.deleteRows(at: [indexPath], with: .automatic)
+            }, completion: { _ in
+                guard let fetchedObjects = self.favoritedAppsFetchedResultController.fetchedObjects else { fatalError("Unable to fetch from persistent container") }
+                let app = fetchedObjects[indexPath.row]
+                app.favoriteDate = nil
+                app.isFavorited = false
+                self.saveContexts()
+            })
         }
         customButton.backgroundColor = .red
         customButton.image = UIImage(systemName: "trash")
@@ -107,9 +116,7 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
         favoritedAppsFetchedResultController.delegate = self
         do {
             try favoritedAppsFetchedResultController.performFetch()
-            guard let fetchedObjects = favoritedAppsFetchedResultController.fetchedObjects else {
-                fatalError("Unable to fetch from persistent container")
-            }
+            guard let fetchedObjects = favoritedAppsFetchedResultController.fetchedObjects else { fatalError("Unable to fetch from persistent container") }
             if fetchedObjects.isEmpty {
                 checkOutTheEntireSteamAppList()
             } else {
@@ -128,9 +135,7 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
         let allAppFetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataController.shared.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         do {
             try allAppFetchedResultController.performFetch()
-            guard let appList = allAppFetchedResultController.fetchedObjects else {
-                fatalError("Unable to fetch from persistent container")
-            }
+            guard let appList = allAppFetchedResultController.fetchedObjects else { fatalError("Unable to fetch from persistent container") }
             if appList.isEmpty {
                 getAppListFromSteamAPI()
             }
@@ -140,9 +145,7 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>, didChangeContentWith diff: CollectionDifference<NSManagedObjectID>) {
-        guard let fetchedObjects = controller.fetchedObjects else {
-            fatalError("Unable to fetch from persistent container")
-        }
+        guard let fetchedObjects = controller.fetchedObjects else { fatalError("Unable to fetch from persistent container") }
         favoritedApp = fetchedObjects as! [SteamApp]
         toggleControllersOnMainThread(isDownloadingAllApp: false)
         refreshTableOnMainThread()

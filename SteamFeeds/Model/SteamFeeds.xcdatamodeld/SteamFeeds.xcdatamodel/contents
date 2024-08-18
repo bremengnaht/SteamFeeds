@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23G93" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="News" representedClassName="News" syncable="YES" codeGenerationType="class">
+        <attribute name="content" optional="YES" attributeType="String"/>
+        <attribute name="newsId" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="unixTime" optional="YES" attributeType="String"/>
+        <attribute name="url" attributeType="URI"/>
+        <relationship name="steamApp" maxCount="1" deletionRule="Nullify" destinationEntity="SteamApp" inverseName="news" inverseEntity="SteamApp"/>
+    </entity>
     <entity name="SteamApp" representedClassName="SteamApp" syncable="YES" codeGenerationType="class">
         <attribute name="appId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="appName" attributeType="String"/>
         <attribute name="favoriteDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="isFavorited" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="news" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="News" inverseName="steamApp" inverseEntity="News"/>
     </entity>
 </model>
