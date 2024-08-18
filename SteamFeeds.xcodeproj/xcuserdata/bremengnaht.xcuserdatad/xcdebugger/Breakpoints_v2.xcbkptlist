@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "19226A1E-CE84-41D4-8988-E244475BD692"
+            uuid = "2111656F-302F-40AA-8303-78E37F6154E7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SteamFeeds/Controller/FavoritedAppsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "getAppListFromSteamAPI()"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
