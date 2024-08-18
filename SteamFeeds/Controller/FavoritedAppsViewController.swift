@@ -51,6 +51,13 @@ class FavoritedAppsViewController: UIViewController {
             self.favoritedAppTableView.reloadData()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "newsViewSegueIndentifier" {
+            let destination = segue.destination as! NewsViewController
+            destination.steamApp = (sender as! SteamApp)
+        }
+    }
 }
 
 // MARK: - UITableView
@@ -168,31 +175,33 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
 extension FavoritedAppsViewController {
     
     func getAppListFromSteamAPI() {
-        toggleControllersOnMainThread(isDownloadingAllApp: true)
-        SteamAPIService.getAppList { result in
-            switch result {
-            case let .success(appListRes):
-                if let appList = appListRes.appList?.apps {
-                    for app in appList {
-                        // App with no name will be removed
-                        if app.name == "" { continue }
-                        
-                        let newApp = SteamApp(context: CoreDataController.shared.viewContext)
-                        newApp.appId = app.appId
-                        newApp.appName = app.name
-                        newApp.isFavorited = false
+        DispatchQueue.global(qos: .utility).async {
+            self.toggleControllersOnMainThread(isDownloadingAllApp: true)
+            SteamAPIService.getAppList { result in
+                switch result {
+                case let .success(appListRes):
+                    if let appList = appListRes.appList?.apps {
+                        for app in appList {
+                            // App with no name will be removed
+                            if app.name == "" { continue }
+                            
+                            let newApp = SteamApp(context: CoreDataController.shared.viewContext)
+                            newApp.appId = app.appId
+                            newApp.appName = app.name
+                            newApp.isFavorited = false
+                        }
+                        self.toggleControllersOnMainThread(isDownloadingAllApp: false)
+                        self.saveContexts()
+                    } else {
+                        self.toggleControllersOnMainThread(isDownloadingAllApp: false)
+                        self.showAlert(title: "Error", message: "Something wrong with Steam's API. Please fetch again from Setting OR restart the app!")
                     }
+                    break
+                case .failure(let error):
                     self.toggleControllersOnMainThread(isDownloadingAllApp: false)
-                    self.saveContexts()
-                } else {
-                    self.toggleControllersOnMainThread(isDownloadingAllApp: false)
-                    self.showAlert(title: "Error", message: "Something wrong with Steam's API. Please fetch again from Setting OR restart the app!")
+                    self.showAlert(title: "Error", message: error.localizedDescription)
+                    break
                 }
-                break
-            case .failure(let error):
-                self.toggleControllersOnMainThread(isDownloadingAllApp: false)
-                self.showAlert(title: "Error", message: error.localizedDescription)
-                break
             }
         }
     }

@@ -140,7 +140,7 @@
                         <outlet property="placeholderView" destination="0f6-ss-hx9" id="n5b-EM-KIe"/>
                         <outlet property="settingButton" destination="0se-QA-SOK" id="iFX-gP-fCP"/>
                         <segue destination="Yay-0J-Im4" kind="showDetail" identifier="newFavoriteSegueIndentifier" id="4dd-e9-00e"/>
-                        <segue destination="ddp-AV-J7i" kind="showDetail" identifier="viewDetailSegueIndentifier" id="QCi-1Y-inE"/>
+                        <segue destination="ddp-AV-J7i" kind="show" identifier="newsViewSegueIndentifier" id="QCi-1Y-inE"/>
                         <segue destination="q33-dn-tbH" kind="showDetail" identifier="settingSegueIndentifier" id="36Y-Dm-2at"/>
                     </connections>
                 </viewController>
@@ -236,16 +236,16 @@
             </objects>
             <point key="canvasLocation" x="2046.564885496183" y="-2.1126760563380285"/>
         </scene>
-        <!--View Controller-->
+        <!--News View Controller-->
         <scene sceneID="lMZ-St-89S">
             <objects>
-                <viewController id="ddp-AV-J7i" sceneMemberID="viewController">
+                <viewController id="ddp-AV-J7i" customClass="NewsViewController" customModule="SteamFeeds" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a7I-qj-hJ8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View Detail Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Vx-hh-ux2">
-                                <rect key="frame" x="135.5" y="432.5" width="143" height="21"/>
+                                <rect key="frame" x="135.5" y="437.5" width="143" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -258,10 +258,50 @@
                             <constraint firstItem="4Vx-hh-ux2" firstAttribute="centerX" secondItem="a7I-qj-hJ8" secondAttribute="centerX" id="t7V-4W-NQu"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="fhn-vz-FRf"/>
+                    <connections>
+                        <segue destination="Ucs-ts-hce" kind="show" identifier="showDetailSegueIndentifier" id="5Ue-Qw-uLI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nkP-9P-Ufb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2047" y="736"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="4wf-wQ-Ca6">
+            <objects>
+                <viewController id="Ucs-ts-hce" customClass="DetailViewController" customModule="SteamFeeds" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BER-Cu-5OY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8W-JU-2YT">
+                                <rect key="frame" x="0.0" y="92" width="414" height="804"/>
+                                <color key="backgroundColor" red="0.36078431372549019" green="0.38823529411764707" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZZ4-uj-nGq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="N8W-JU-2YT" firstAttribute="bottom" secondItem="BER-Cu-5OY" secondAttribute="bottom" id="1HC-T1-3Kc"/>
+                            <constraint firstItem="N8W-JU-2YT" firstAttribute="trailing" secondItem="BER-Cu-5OY" secondAttribute="trailing" id="eaO-CW-yz7"/>
+                            <constraint firstItem="N8W-JU-2YT" firstAttribute="top" secondItem="ZZ4-uj-nGq" secondAttribute="top" id="gQX-F4-XsO"/>
+                            <constraint firstItem="N8W-JU-2YT" firstAttribute="leading" secondItem="BER-Cu-5OY" secondAttribute="leading" id="ge7-Q0-jsZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="CI6-BH-Z1o">
+                        <barButtonItem key="rightBarButtonItem" id="0yG-Vr-ewJ">
+                            <imageReference key="image" image="arrow.up.right.square" catalog="system" symbolScale="large"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QqS-ft-A7O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3032" y="736"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="c0U-1A-HJj">
@@ -341,18 +381,19 @@
     <resources>
         <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
         <image name="arrow.up.right" catalog="system" width="128" height="112"/>
+        <image name="arrow.up.right.square" catalog="system" width="128" height="114"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="gamecontroller" catalog="system" width="128" height="79"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="placeholderTextColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
