@@ -23,14 +23,13 @@ class FavoritedAppsViewController: UIViewController, UITableViewDelegate, UITabl
         favoritedAppTableView.delegate = self
         
         fetchFavoritedAppFromCoreData()
-        checkIsFirstTime()
     }
     
     @IBAction func openSetting(_ sender: Any) {
         performSegue(withIdentifier: "settingSegueIndentifier", sender: nil)
     }
     
-    func toggleControllers(isDownloadingAllApp: Bool) {
+    func toggleControllersOnMainThread(isDownloadingAllApp: Bool) {
         DispatchQueue.main.async {
             self.settingButton.isEnabled = !isDownloadingAllApp
             self.addNewFavoriteApp.isEnabled = !isDownloadingAllApp
@@ -42,7 +41,7 @@ class FavoritedAppsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    func refreshTable() {
+    func refreshTableOnMainThread() {
         DispatchQueue.main.async {
             self.favoritedAppTableView.reloadData()
         }
@@ -108,13 +107,21 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
         favoritedAppsFetchedResultController.delegate = self
         do {
             try favoritedAppsFetchedResultController.performFetch()
-            refreshTable()
+            guard let fetchedObjects = favoritedAppsFetchedResultController.fetchedObjects else {
+                fatalError("Unable to fetch from persistent container")
+            }
+            if fetchedObjects.isEmpty {
+                checkOutTheEntireSteamAppList()
+            } else {
+                favoritedApp = fetchedObjects
+            }
+            refreshTableOnMainThread()
         } catch {
             fatalError(error.localizedDescription)
         }
     }
     
-    func checkIsFirstTime() {
+    func checkOutTheEntireSteamAppList() {
         let fetchRequest: NSFetchRequest<SteamApp> = SteamApp.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "appId", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
@@ -126,8 +133,6 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
             }
             if appList.isEmpty {
                 getAppListFromSteamAPI()
-            } else {
-                toggleControllers(isDownloadingAllApp: false)
             }
         } catch {
             fatalError(error.localizedDescription)
@@ -135,10 +140,12 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>, didChangeContentWith diff: CollectionDifference<NSManagedObjectID>) {
-        guard let fetchedObjects = controller.fetchedObjects else { return }
-        
+        guard let fetchedObjects = controller.fetchedObjects else {
+            fatalError("Unable to fetch from persistent container")
+        }
         favoritedApp = fetchedObjects as! [SteamApp]
-        favoritedAppTableView.reloadData()
+        toggleControllersOnMainThread(isDownloadingAllApp: false)
+        refreshTableOnMainThread()
     }
     
 }
@@ -148,7 +155,7 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
 extension FavoritedAppsViewController {
     
     func getAppListFromSteamAPI() {
-        toggleControllers(isDownloadingAllApp: true)
+        toggleControllersOnMainThread(isDownloadingAllApp: true)
         SteamAPIService.getAppList { result in
             switch result {
             case let .success(appListRes):
@@ -169,14 +176,15 @@ extension FavoritedAppsViewController {
                     }
                     self.saveContexts()
                 } else {
+                    self.toggleControllersOnMainThread(isDownloadingAllApp: false)
                     self.showAlert(title: "Error", message: "Something wrong with Steam's API. Please fetch again from Setting OR restart the app!")
                 }
                 break
             case .failure(let error):
+                self.toggleControllersOnMainThread(isDownloadingAllApp: false)
                 self.showAlert(title: "Error", message: error.localizedDescription)
                 break
             }
-            self.toggleControllers(isDownloadingAllApp: false)
         }
     }
 }
