@@ -87,7 +87,7 @@ extension FavoritedAppsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "viewDetailSegueIndentifier", sender: favoritedApp[indexPath.row])
+        performSegue(withIdentifier: "newsViewSegueIndentifier", sender: favoritedApp[indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -164,7 +164,6 @@ extension FavoritedAppsViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>, didChangeContentWith diff: CollectionDifference<NSManagedObjectID>) {
         guard let fetchedObjects = controller.fetchedObjects else { fatalError("Unable to fetch from persistent container") }
         favoritedApp = fetchedObjects as! [SteamApp]
-        toggleControllersOnMainThread(isDownloadingAllApp: false)
         refreshTableOnMainThread()
     }
     
@@ -178,31 +177,35 @@ extension FavoritedAppsViewController {
         DispatchQueue.global(qos: .utility).async {
             self.toggleControllersOnMainThread(isDownloadingAllApp: true)
             SteamAPIService.getAppList { result in
-                switch result {
-                case let .success(appListRes):
-                    if let appList = appListRes.appList?.apps {
-                        for app in appList {
-                            // App with no name will be removed
-                            if app.name == "" { continue }
-                            
-                            let newApp = SteamApp(context: CoreDataController.shared.viewContext)
-                            newApp.appId = app.appId
-                            newApp.appName = app.name
-                            newApp.isFavorited = false
-                        }
-                        self.toggleControllersOnMainThread(isDownloadingAllApp: false)
-                        self.saveContexts()
-                    } else {
-                        self.toggleControllersOnMainThread(isDownloadingAllApp: false)
-                        self.showAlert(title: "Error", message: "Something wrong with Steam's API. Please fetch again from Setting OR restart the app!")
-                    }
-                    break
-                case .failure(let error):
-                    self.toggleControllersOnMainThread(isDownloadingAllApp: false)
-                    self.showAlert(title: "Error", message: error.localizedDescription)
-                    break
-                }
+                self.getAppListCompletionHandler(result)
             }
+        }
+    }
+    
+    func getAppListCompletionHandler(_ result: Result<APIResponseGetAppList, any Error>) {
+        switch result {
+        case let .success(appListRes):
+            if let appList = appListRes.appList?.apps {
+                for app in appList {
+                    // App with no name will be removed
+                    if app.name == "" { continue }
+                    
+                    let newApp = SteamApp(context: CoreDataController.shared.viewContext)
+                    newApp.appId = app.appId
+                    newApp.appName = app.name
+                    newApp.isFavorited = false
+                }
+                self.toggleControllersOnMainThread(isDownloadingAllApp: false)
+                self.saveContexts()
+            } else {
+                self.toggleControllersOnMainThread(isDownloadingAllApp: false)
+                self.showAlert(title: "Error", message: "Something wrong with Steam's API. Please fetch again from Setting OR restart the app!")
+            }
+            break
+        case .failure(let error):
+            self.toggleControllersOnMainThread(isDownloadingAllApp: false)
+            self.showAlert(title: "Error", message: error.localizedDescription)
+            break
         }
     }
 }
