@@ -63,10 +63,13 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let data = news[indexPath.row]
         cell.news = data
-        //        cell.applicationName.text = data.appName
-        //        let dateFormatter = DateFormatter()
-        //        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        //        cell.subscribeSince.text = "Subscribe since \(dateFormatter.string(from: data.favoriteDate!))"
+        cell.feedLabel.text = data.feedLabel
+        cell.title.text = data.title
+        cell.author.text = data.author
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        cell.createDate.text = "\(dateFormatter.string(from: data.createdDate!))"
         
         let newSelectionBackground = UIView()
         newSelectionBackground.backgroundColor = .systemBlue
@@ -80,9 +83,9 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        return 50
-    //    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
     
 }
 
