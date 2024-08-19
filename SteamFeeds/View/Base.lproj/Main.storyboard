@@ -329,7 +329,7 @@
             </objects>
             <point key="canvasLocation" x="2046.376811594203" y="735.9375"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Title-->
         <scene sceneID="4wf-wQ-Ca6">
             <objects>
                 <viewController id="Ucs-ts-hce" customClass="DetailViewController" customModule="SteamFeeds" customModuleProvider="target" sceneMemberID="viewController">
@@ -339,7 +339,6 @@
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8W-JU-2YT">
                                 <rect key="frame" x="0.0" y="92" width="414" height="804"/>
-                                <color key="backgroundColor" red="0.36078431372549019" green="0.38823529411764707" blue="0.40392156862745099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
@@ -350,16 +349,23 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="N8W-JU-2YT" firstAttribute="bottom" secondItem="BER-Cu-5OY" secondAttribute="bottom" id="1HC-T1-3Kc"/>
-                            <constraint firstItem="N8W-JU-2YT" firstAttribute="trailing" secondItem="BER-Cu-5OY" secondAttribute="trailing" id="eaO-CW-yz7"/>
+                            <constraint firstItem="N8W-JU-2YT" firstAttribute="trailing" secondItem="ZZ4-uj-nGq" secondAttribute="trailing" id="eaO-CW-yz7"/>
                             <constraint firstItem="N8W-JU-2YT" firstAttribute="top" secondItem="ZZ4-uj-nGq" secondAttribute="top" id="gQX-F4-XsO"/>
-                            <constraint firstItem="N8W-JU-2YT" firstAttribute="leading" secondItem="BER-Cu-5OY" secondAttribute="leading" id="ge7-Q0-jsZ"/>
+                            <constraint firstItem="N8W-JU-2YT" firstAttribute="leading" secondItem="ZZ4-uj-nGq" secondAttribute="leading" id="ge7-Q0-jsZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="CI6-BH-Z1o">
+                    <navigationItem key="navigationItem" title="Title" id="CI6-BH-Z1o">
                         <barButtonItem key="rightBarButtonItem" id="0yG-Vr-ewJ">
                             <imageReference key="image" image="arrow.up.right.square" catalog="system" symbolScale="large"/>
+                            <connections>
+                                <action selector="openExternalURL:" destination="Ucs-ts-hce" id="f3q-vz-Xt0"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="navigationBar" destination="CI6-BH-Z1o" id="UqO-2u-fo7"/>
+                        <outlet property="webView" destination="N8W-JU-2YT" id="gdx-kn-oll"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QqS-ft-A7O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
