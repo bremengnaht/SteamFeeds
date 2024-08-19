@@ -116,6 +116,7 @@ extension NewsViewController: NSFetchedResultsControllerDelegate {
     
     func createNewObjectInPersistentStore(_ newsItem: APIResponseNewsItem) {
         let news = News(context: CoreDataController.shared.viewContext)
+        news.steamApp = self.steamApp
         news.author = newsItem.author
         news.content = newsItem.contents
         news.feedLabel = newsItem.feedLabel
@@ -144,6 +145,7 @@ extension NewsViewController {
         case let .success(newsForApp):
             if let newsItems = newsForApp.appNews?.newsItems {
                 for newsItem in newsItems {
+                    guard self.news.first(where: { $0.gid == newsItem.gid }) == nil else { continue }
                     createNewObjectInPersistentStore(newsItem)
                 }
                 self.toggleControllersOnMainThread(isDownloadingNews: false)
