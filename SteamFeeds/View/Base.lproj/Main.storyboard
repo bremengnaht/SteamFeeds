@@ -227,7 +227,7 @@
             </objects>
             <point key="canvasLocation" x="2046.376811594203" y="-2.6785714285714284"/>
         </scene>
-        <!--News View Controller-->
+        <!--Game Name-->
         <scene sceneID="lMZ-St-89S">
             <objects>
                 <viewController id="ddp-AV-J7i" customClass="NewsViewController" customModule="SteamFeeds" customModuleProvider="target" sceneMemberID="viewController">
@@ -310,9 +310,17 @@
                             <constraint firstItem="b2M-xU-ch5" firstAttribute="top" secondItem="Y9s-aG-BpE" secondAttribute="top" id="nzh-p9-E7z"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="fhn-vz-FRf"/>
+                    <navigationItem key="navigationItem" title="Game Name" id="fhn-vz-FRf">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="yJv-XW-3UC"/>
+                        <barButtonItem key="rightBarButtonItem" image="arrow.clockwise" catalog="system" id="4Df-B6-ooi">
+                            <connections>
+                                <action selector="reloadLatest:" destination="ddp-AV-J7i" id="BWI-I6-vP0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicatorView" destination="Rsf-hw-L6C" id="rAH-BY-Ehd"/>
+                        <outlet property="navigationBar" destination="fhn-vz-FRf" id="ASL-kE-Fqg"/>
                         <outlet property="tableView" destination="b2M-xU-ch5" id="4UC-4r-v3k"/>
                         <segue destination="Ucs-ts-hce" kind="show" identifier="showDetailSegueIndentifier" id="5Ue-Qw-uLI"/>
                     </connections>

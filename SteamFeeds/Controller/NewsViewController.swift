@@ -11,6 +11,7 @@ import CoreData
 class NewsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var navigationBar: UINavigationItem!
     
     var steamApp: SteamApp!
     var newsFetchedResultController: NSFetchedResultsController<News>!
@@ -23,6 +24,8 @@ class NewsViewController: UIViewController {
         
         fetchNewsFromCoreData()
         getLatestNewsFromAPI()
+        
+        navigationBar.title = steamApp.appName
     }
     
     func toggleControllersOnMainThread(isDownloadingNews: Bool) {
@@ -48,6 +51,9 @@ class NewsViewController: UIViewController {
         }
     }
     
+    @IBAction func reloadLatest(_ sender: Any) {
+        getLatestNewsFromAPI()
+    }
 }
 
 // MARK: - UITableView
