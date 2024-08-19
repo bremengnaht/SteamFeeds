@@ -23,8 +23,8 @@ extension UIViewController {
         do {
             try CoreDataController.shared.viewContext.save()
         } catch {
-            DispatchQueue.global(qos: .background).async {
-                // Force try again
+            // Try again 2 seconds
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 2) {
                 self.saveContexts()
             }
         }

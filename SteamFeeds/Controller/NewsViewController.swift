@@ -16,6 +16,7 @@ class NewsViewController: UIViewController {
     var steamApp: SteamApp!
     var newsFetchedResultController: NSFetchedResultsController<News>!
     var news: [News] = []
+    var isLoadingMoreData: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +94,18 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         return 90
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentOffsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let frameHeight = scrollView.frame.size.height
+        
+        // Trigger loading when the user scrolls to the bottom
+        if contentOffsetY > contentHeight - frameHeight {
+            guard !isLoadingMoreData else { return }
+            loadMoreData()
+        }
+    }
+    
 }
 
 // MARK: - Core Data
@@ -141,10 +154,19 @@ extension NewsViewController: NSFetchedResultsControllerDelegate {
 
 extension NewsViewController {
     func getLatestNewsFromAPI() {
-        DispatchQueue.global(qos: .utility).async {
-            self.toggleControllersOnMainThread(isDownloadingNews: true)
-            SteamAPIService.getNewsForApp(appId: self.steamApp.appId, endDate: Date()) { result in
+        self.toggleControllersOnMainThread(isDownloadingNews: true)
+        SteamAPIService.getNewsForApp(appId: self.steamApp.appId, endDate: Date()) { result in
+            self.getNewsForApp(result)
+        }
+    }
+    
+    func loadMoreData() {
+        isLoadingMoreData = true
+        self.toggleControllersOnMainThread(isDownloadingNews: true)
+        if let getFromDate = news.last?.createdDate {
+            SteamAPIService.getNewsForApp(appId: self.steamApp.appId, endDate: getFromDate.addingTimeInterval(-1)) { result in
                 self.getNewsForApp(result)
+                self.isLoadingMoreData = false
             }
         }
     }
