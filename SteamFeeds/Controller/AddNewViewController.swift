@@ -89,7 +89,9 @@ extension AddNewViewController: UISearchBarDelegate {
     }
     
     func performSearch(with query: String) {
-        if query != "" {
+        if query == "" {
+            self.currentSearchResult = []
+        } else {
             self.currentSearchResult = self.steamApps.filter({ app in
                 if let appName = app.appName {
                     return appName.lowercased().contains(query.lowercased())
