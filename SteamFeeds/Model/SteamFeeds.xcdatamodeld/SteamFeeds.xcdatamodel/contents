@@ -3,10 +3,10 @@
     <entity name="News" representedClassName="News" syncable="YES" codeGenerationType="class">
         <attribute name="author" optional="YES" attributeType="String"/>
         <attribute name="content" optional="YES" attributeType="String"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="feedLabel" optional="YES" attributeType="String"/>
         <attribute name="gid" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
-        <attribute name="unixTime" optional="YES" attributeType="String"/>
         <attribute name="url" attributeType="String"/>
         <relationship name="steamApp" maxCount="1" deletionRule="Nullify" destinationEntity="SteamApp" inverseName="news" inverseEntity="SteamApp"/>
     </entity>

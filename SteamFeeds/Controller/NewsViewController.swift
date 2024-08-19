@@ -15,12 +15,12 @@ class NewsViewController: UIViewController {
     var steamApp: SteamApp!
     var newsFetchedResultController: NSFetchedResultsController<News>!
     var news: [News] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-
+        
         fetchNewsFromCoreData()
         getLatestNewsFromAPI()
     }
@@ -47,7 +47,7 @@ class NewsViewController: UIViewController {
             destination.news = (sender as! News)
         }
     }
-
+    
 }
 
 // MARK: - UITableView
@@ -60,13 +60,13 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsCellReuseIdentifier", for: indexPath) as! NewsTableViewCell
-
+        
         let data = news[indexPath.row]
         cell.news = data
-//        cell.applicationName.text = data.appName
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//        cell.subscribeSince.text = "Subscribe since \(dateFormatter.string(from: data.favoriteDate!))"
+        //        cell.applicationName.text = data.appName
+        //        let dateFormatter = DateFormatter()
+        //        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        //        cell.subscribeSince.text = "Subscribe since \(dateFormatter.string(from: data.favoriteDate!))"
         
         let newSelectionBackground = UIView()
         newSelectionBackground.backgroundColor = .systemBlue
@@ -80,9 +80,9 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 50
-//    }
+    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    //        return 50
+    //    }
     
 }
 
@@ -92,7 +92,7 @@ extension NewsViewController: NSFetchedResultsControllerDelegate {
     
     func fetchNewsFromCoreData() {
         let fetchRequest: NSFetchRequest<News> = News.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "unixTime", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "createdDate", ascending: false)
         let predicate = NSPredicate(format: "steamApp == %@", steamApp)
         fetchRequest.sortDescriptors = [sortDescriptor]
         fetchRequest.predicate = predicate
@@ -114,6 +114,17 @@ extension NewsViewController: NSFetchedResultsControllerDelegate {
         refreshTableOnMainThread()
     }
     
+    func createNewObjectInPersistentStore(_ newsItem: APIResponseNewsItem) {
+        let news = News(context: CoreDataController.shared.viewContext)
+        news.author = newsItem.author
+        news.content = newsItem.contents
+        news.feedLabel = newsItem.feedLabel
+        news.gid = newsItem.gid
+        news.title = newsItem.title
+        news.createdDate = Date(timeIntervalSince1970: TimeInterval(newsItem.date))
+        news.url = newsItem.url
+    }
+    
 }
 
 // MARK: - Steam API
@@ -133,12 +144,7 @@ extension NewsViewController {
         case let .success(newsForApp):
             if let newsItems = newsForApp.appNews?.newsItems {
                 for newsItem in newsItems {
-                    let news = News(context: CoreDataController.shared.viewContext)
-                    news.author = newsItem.author
-                    news.content = newsItem.contents
-                    
-                    // TODO
-                    
+                    createNewObjectInPersistentStore(newsItem)
                 }
                 self.toggleControllersOnMainThread(isDownloadingNews: false)
                 self.saveContexts()
@@ -153,4 +159,5 @@ extension NewsViewController {
             break
         }
     }
+    
 }
