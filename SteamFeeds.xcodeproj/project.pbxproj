@@ -63,6 +63,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2ABA760A2C72E03A0019B2D9 /* APIResponse */ = {
+			isa = PBXGroup;
+			children = (
+				2AF999982C705390006C9F68 /* APIResponseGetAppList.swift */,
+				2ABA76082C724BD00019B2D9 /* APIResponseGetNewsForApp.swift */,
+			);
+			path = APIResponse;
+			sourceTree = "<group>";
+		};
+		2ABA760B2C72E0560019B2D9 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2AF999A12C70E1B5006C9F68 /* FavoritedAppTableViewCell.swift */,
+				2AF999A52C71E3C8006C9F68 /* AddNewTableViewCell.swift */,
+				2ABA76062C7245C30019B2D9 /* NewsTableViewCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		2AF9996B2C6F9D23006C9F68 = {
 			isa = PBXGroup;
 			children = (
@@ -137,11 +156,8 @@
 		2AF999A02C70E0CD006C9F68 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
-				2AF999982C705390006C9F68 /* APIResponseGetAppList.swift */,
-				2ABA76082C724BD00019B2D9 /* APIResponseGetNewsForApp.swift */,
-				2AF999A12C70E1B5006C9F68 /* FavoritedAppTableViewCell.swift */,
-				2AF999A52C71E3C8006C9F68 /* AddNewTableViewCell.swift */,
-				2ABA76062C7245C30019B2D9 /* NewsTableViewCell.swift */,
+				2ABA760B2C72E0560019B2D9 /* TableViewCell */,
+				2ABA760A2C72E03A0019B2D9 /* APIResponse */,
 			);
 			path = Struct;
 			sourceTree = "<group>";

@@ -122,36 +122,35 @@ extension NewsViewController {
     func getLatestNewsFromAPI() {
         DispatchQueue.global(qos: .utility).async {
             self.toggleControllersOnMainThread(isDownloadingNews: true)
-//            SteamAPIService.getAppList { result in
-//                self.getAppListCompletionHandler(result)
-//            }
+            SteamAPIService.getNewsForApp(appId: self.steamApp.appId, endDate: Date()) { result in
+                self.getNewsForApp(result)
+            }
         }
     }
     
-//    func getAppListCompletionHandler(_ result: Result<APIResponseGetAppList, any Error>) {
-//        switch result {
-//        case let .success(appListRes):
-//            if let appList = appListRes.appList?.apps {
-//                for app in appList {
-//                    // App with no name will be removed
-//                    if app.name == "" { continue }
-//                    
-//                    let newApp = SteamApp(context: CoreDataController.shared.viewContext)
-//                    newApp.appId = app.appId
-//                    newApp.appName = app.name
-//                    newApp.isFavorited = false
-//                }
-//                self.toggleControllersOnMainThread(isDownloadingNews: false)
-//                self.saveContexts()
-//            } else {
-//                self.toggleControllersOnMainThread(isDownloadingNews: false)
-//                self.showAlert(title: "Error", message: "Something wrong with Steam's API. Please fetch again from Setting OR restart the app!")
-//            }
-//            break
-//        case .failure(let error):
-//            self.toggleControllersOnMainThread(isDownloadingNews: false)
-//            self.showAlert(title: "Error", message: error.localizedDescription)
-//            break
-//        }
-//    }
+    func getNewsForApp(_ result: Result<APIResponseGetNewsForApp, any Error>) {
+        switch result {
+        case let .success(newsForApp):
+            if let newsItems = newsForApp.appNews?.newsItems {
+                for newsItem in newsItems {
+                    let news = News(context: CoreDataController.shared.viewContext)
+                    news.author = newsItem.author
+                    news.content = newsItem.contents
+                    
+                    // TODO
+                    
+                }
+                self.toggleControllersOnMainThread(isDownloadingNews: false)
+                self.saveContexts()
+            } else {
+                self.toggleControllersOnMainThread(isDownloadingNews: false)
+                self.showAlert(title: "Error", message: "Something wrong with Steam's API. Please fetch again from Setting OR restart the app!")
+            }
+            break
+        case .failure(let error):
+            self.toggleControllersOnMainThread(isDownloadingNews: false)
+            self.showAlert(title: "Error", message: error.localizedDescription)
+            break
+        }
+    }
 }

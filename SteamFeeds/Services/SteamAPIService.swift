@@ -48,8 +48,9 @@ class SteamAPIService {
         task.resume()
     }
     
-    static func getNewsForApp(appId: Int32, endDate: String, completion: @escaping (Result<APIResponseGetNewsForApp, Error>) -> Void) {
-        let url = Endpoints.getNewsForApp(appId, 20, endDate).url
+    static func getNewsForApp(appId: Int32, endDate: Date, completion: @escaping (Result<APIResponseGetNewsForApp, Error>) -> Void) {
+        let unixTime = String(Int(endDate.timeIntervalSince1970))
+        let url = Endpoints.getNewsForApp(appId, 20, unixTime).url
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 completion(.failure(error))
