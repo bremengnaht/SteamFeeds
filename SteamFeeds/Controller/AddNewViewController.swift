@@ -11,6 +11,7 @@ import CoreData
 class AddNewViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var noResultLabel: UILabel!
     
     var steamApps: [SteamApp] = []
     var currentSearchResult: [SteamApp] = []
@@ -24,6 +25,12 @@ class AddNewViewController: UIViewController {
         
         fetchAllAppFromCoreData()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        searchBar.becomeFirstResponder()
+    }
+    
 }
 
 // MARK: - UITableView
@@ -31,18 +38,11 @@ class AddNewViewController: UIViewController {
 extension AddNewViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if currentSearchResult.count == 0 {
-            return 1
-        }
-        
+        noResultLabel.isHidden = currentSearchResult.count != 0
         return currentSearchResult.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if currentSearchResult.count == 0 {
-            return tableView.dequeueReusableCell(withIdentifier: "EmptyCellReuseId", for: indexPath)
-        }
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCellReuseId", for: indexPath) as! AddNewTableViewCell
         
         let data = currentSearchResult[indexPath.row]
@@ -57,8 +57,6 @@ extension AddNewViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if currentSearchResult.count == 0 { return }
-        
         let selectedRow = currentSearchResult[indexPath.row]
         if selectedRow.isFavorited {
             showAlert(title: "Ug uh !!!", message: "This game is already favorited")
@@ -90,7 +88,7 @@ extension AddNewViewController: UISearchBarDelegate {
         DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 0.5, execute: workItem)
     }
     
-    private func performSearch(with query: String) {
+    func performSearch(with query: String) {
         if query != "" {
             self.currentSearchResult = self.steamApps.filter({ app in
                 if let appName = app.appName {

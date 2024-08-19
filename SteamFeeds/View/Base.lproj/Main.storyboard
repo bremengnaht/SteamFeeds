@@ -194,49 +194,38 @@
                                             <outlet property="applicationName" destination="MMs-zP-65I" id="aDB-Wf-bFE"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmptyCellReuseId" rowHeight="60" id="76d-oU-6Du">
-                                        <rect key="frame" x="0.0" y="110" width="414" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="76d-oU-6Du" id="VHu-cs-C00">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tc1-hn-l8h">
-                                                    <rect key="frame" x="170.5" y="19.5" width="73.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" systemColor="placeholderTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Tc1-hn-l8h" firstAttribute="centerX" secondItem="VHu-cs-C00" secondAttribute="centerX" id="5vQ-Be-mVx"/>
-                                                <constraint firstItem="Tc1-hn-l8h" firstAttribute="centerY" secondItem="VHu-cs-C00" secondAttribute="centerY" id="aIc-Ky-LpS"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Result" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUo-yo-Wl2">
+                                <rect key="frame" x="172" y="210.5" width="70" height="22"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Smn-oN-4Fc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ZUo-yo-Wl2" firstAttribute="centerX" secondItem="Smn-oN-4Fc" secondAttribute="centerX" id="BOj-ck-B9a"/>
                             <constraint firstItem="14g-Om-QiH" firstAttribute="top" secondItem="xxf-zC-RuB" secondAttribute="bottom" id="FGx-az-GBq"/>
                             <constraint firstItem="xxf-zC-RuB" firstAttribute="trailing" secondItem="Smn-oN-4Fc" secondAttribute="trailing" id="POW-na-KU4"/>
                             <constraint firstItem="14g-Om-QiH" firstAttribute="bottom" secondItem="TIL-Me-gj9" secondAttribute="bottom" id="PZf-jc-z2g"/>
                             <constraint firstItem="xxf-zC-RuB" firstAttribute="leading" secondItem="Smn-oN-4Fc" secondAttribute="leading" id="SFC-68-HhD"/>
                             <constraint firstItem="14g-Om-QiH" firstAttribute="trailing" secondItem="Smn-oN-4Fc" secondAttribute="trailing" id="aeY-6c-QyO"/>
+                            <constraint firstItem="ZUo-yo-Wl2" firstAttribute="centerY" secondItem="Smn-oN-4Fc" secondAttribute="centerY" multiplier="0.5" id="cP7-f1-WMo"/>
                             <constraint firstItem="xxf-zC-RuB" firstAttribute="top" secondItem="Smn-oN-4Fc" secondAttribute="top" id="h8S-YZ-5J7"/>
                             <constraint firstItem="14g-Om-QiH" firstAttribute="leading" secondItem="Smn-oN-4Fc" secondAttribute="leading" id="wFx-1M-5jU"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="noResultLabel" destination="ZUo-yo-Wl2" id="YbV-09-75e"/>
                         <outlet property="searchBar" destination="xxf-zC-RuB" id="JOJ-6F-Vjw"/>
                         <outlet property="tableView" destination="14g-Om-QiH" id="NgM-hx-Dq6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UJ5-Aw-Bio" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2046.564885496183" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="2046.376811594203" y="-2.6785714285714284"/>
         </scene>
         <!--News View Controller-->
         <scene sceneID="lMZ-St-89S">
@@ -453,9 +442,6 @@
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="placeholderTextColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
