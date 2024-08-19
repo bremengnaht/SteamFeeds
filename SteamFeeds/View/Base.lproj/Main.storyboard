@@ -122,7 +122,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Favorited Games" id="Mh6-Vx-trB">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="gearshape.fill" catalog="system" id="0se-QA-SOK">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="info.circle" catalog="system" id="0se-QA-SOK">
                             <connections>
                                 <action selector="openSetting:" destination="BYZ-38-t0r" id="bG8-ck-n0B"/>
                             </connections>
@@ -373,23 +373,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snb-vF-AEF">
-                                <rect key="frame" x="137.5" y="647.5" width="139" height="34"/>
-                                <color key="tintColor" systemColor="systemRedColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="arrow.clockwise" catalog="system" title="Reset all data">
-                                    <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                                </buttonConfiguration>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This action will clear the entire application memory and reload from the beginning" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQo-JR-e0Y" userLabel="Warning message">
-                                <rect key="frame" x="10" y="681.5" width="394" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="78f-eT-EjQ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <color key="textColor" systemColor="systemRedColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPR-EA-xTu" userLabel="Close Setting">
                                 <rect key="frame" x="358" y="10" width="46" height="40"/>
                                 <constraints>
@@ -402,18 +385,41 @@
                                     <action selector="closeSetting:" destination="q33-dn-tbH" eventType="touchUpInside" id="e9g-PQ-etY"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Udacity final project" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQo-JR-e0Y">
+                                <rect key="frame" x="119.5" y="518" width="175" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="78f-eT-EjQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="graduationcap.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7fW-Px-ACW" userLabel="Graduation Cap">
+                                <rect key="frame" x="132" y="368.5" width="150" height="149"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="CQD-1W-FO9"/>
+                                    <constraint firstAttribute="width" constant="150" id="b6b-GG-wkZ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright 2024 Thang Nguyen Quyet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wow-oX-j0V">
+                                <rect key="frame" x="64" y="835" width="286" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SzK-LP-WQU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="yQo-JR-e0Y" firstAttribute="trailing" secondItem="SzK-LP-WQU" secondAttribute="trailing" constant="-10" id="C5F-fC-Nem"/>
+                            <constraint firstItem="yQo-JR-e0Y" firstAttribute="top" secondItem="7fW-Px-ACW" secondAttribute="bottom" id="0Sh-Ba-U14"/>
+                            <constraint firstItem="Wow-oX-j0V" firstAttribute="centerX" secondItem="eeO-w8-oVa" secondAttribute="centerX" id="0c7-zQ-jz5"/>
                             <constraint firstItem="HPR-EA-xTu" firstAttribute="trailing" secondItem="SzK-LP-WQU" secondAttribute="trailing" constant="-10" id="PXu-mh-D1u"/>
-                            <constraint firstItem="yQo-JR-e0Y" firstAttribute="leading" secondItem="SzK-LP-WQU" secondAttribute="leading" constant="10" id="Tgt-Ya-3lb"/>
-                            <constraint firstItem="snb-vF-AEF" firstAttribute="centerX" secondItem="eeO-w8-oVa" secondAttribute="centerX" id="a5b-aJ-lWc"/>
+                            <constraint firstItem="7fW-Px-ACW" firstAttribute="centerY" secondItem="eeO-w8-oVa" secondAttribute="centerY" id="VHa-Bi-Hpe"/>
                             <constraint firstItem="HPR-EA-xTu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SzK-LP-WQU" secondAttribute="leading" id="bU7-Hb-lTR"/>
-                            <constraint firstItem="yQo-JR-e0Y" firstAttribute="top" secondItem="snb-vF-AEF" secondAttribute="bottom" id="dif-eT-H5M"/>
+                            <constraint firstItem="yQo-JR-e0Y" firstAttribute="centerX" secondItem="eeO-w8-oVa" secondAttribute="centerX" id="bo7-6P-0Uk"/>
+                            <constraint firstItem="7fW-Px-ACW" firstAttribute="centerX" secondItem="SzK-LP-WQU" secondAttribute="centerX" id="boE-Hy-O8S"/>
                             <constraint firstItem="HPR-EA-xTu" firstAttribute="top" secondItem="SzK-LP-WQU" secondAttribute="top" constant="10" id="fZ0-3h-2K3"/>
-                            <constraint firstItem="snb-vF-AEF" firstAttribute="centerY" secondItem="eeO-w8-oVa" secondAttribute="centerY" multiplier="1.5" id="s33-u3-hKZ"/>
+                            <constraint firstItem="Wow-oX-j0V" firstAttribute="bottom" secondItem="SzK-LP-WQU" secondAttribute="bottom" constant="-30" id="vLS-Mg-IIQ"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -446,7 +452,8 @@
         <image name="arrow.up.right.square" catalog="system" width="128" height="114"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="gamecontroller" catalog="system" width="128" height="79"/>
-        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
+        <image name="graduationcap.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -456,9 +463,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
