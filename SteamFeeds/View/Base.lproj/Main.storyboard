@@ -202,10 +202,14 @@
                                 <color key="textColor" systemColor="opaqueSeparatorColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="VvR-lF-KKg">
+                                <rect key="frame" x="188.5" y="424.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Smn-oN-4Fc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="VvR-lF-KKg" firstAttribute="centerY" secondItem="Smn-oN-4Fc" secondAttribute="centerY" id="BBD-TC-mMc"/>
                             <constraint firstItem="ZUo-yo-Wl2" firstAttribute="centerX" secondItem="Smn-oN-4Fc" secondAttribute="centerX" id="BOj-ck-B9a"/>
                             <constraint firstItem="14g-Om-QiH" firstAttribute="top" secondItem="xxf-zC-RuB" secondAttribute="bottom" id="FGx-az-GBq"/>
                             <constraint firstItem="xxf-zC-RuB" firstAttribute="trailing" secondItem="Smn-oN-4Fc" secondAttribute="trailing" id="POW-na-KU4"/>
@@ -215,9 +219,11 @@
                             <constraint firstItem="ZUo-yo-Wl2" firstAttribute="centerY" secondItem="Smn-oN-4Fc" secondAttribute="centerY" multiplier="0.5" id="cP7-f1-WMo"/>
                             <constraint firstItem="xxf-zC-RuB" firstAttribute="top" secondItem="Smn-oN-4Fc" secondAttribute="top" id="h8S-YZ-5J7"/>
                             <constraint firstItem="14g-Om-QiH" firstAttribute="leading" secondItem="Smn-oN-4Fc" secondAttribute="leading" id="wFx-1M-5jU"/>
+                            <constraint firstItem="VvR-lF-KKg" firstAttribute="centerX" secondItem="Smn-oN-4Fc" secondAttribute="centerX" id="zNw-2z-5Qh"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="VvR-lF-KKg" id="qVc-Mg-I3F"/>
                         <outlet property="noResultLabel" destination="ZUo-yo-Wl2" id="YbV-09-75e"/>
                         <outlet property="searchBar" destination="xxf-zC-RuB" id="JOJ-6F-Vjw"/>
                         <outlet property="tableView" destination="14g-Om-QiH" id="NgM-hx-Dq6"/>

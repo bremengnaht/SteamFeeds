@@ -12,6 +12,7 @@ class AddNewViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var noResultLabel: UILabel!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     var steamApps: [SteamApp] = []
     var currentSearchResult: [SteamApp] = []
@@ -76,6 +77,8 @@ extension AddNewViewController: UITableViewDelegate, UITableViewDataSource {
 extension AddNewViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        activityIndicatorView.startAnimating()
+        noResultLabel.isHidden = true
         // Cancel the previous work item if it exists
         searchWorkItem?.cancel()
         // Create a new work item with the debounced task
@@ -101,6 +104,7 @@ extension AddNewViewController: UISearchBarDelegate {
         }
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.activityIndicatorView.stopAnimating()
         }
     }
     
