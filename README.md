@@ -45,12 +45,5 @@ The content of fetched news will be display in this screen by WebKit framework b
 <img src="https://github.com/bremengnaht/SteamFeeds/blob/main/Demo%20Images/IMG_8934.PNG" alt="alt text" width="390" height="844" hspace=20 vspace=20> -> <img src="https://github.com/bremengnaht/SteamFeeds/blob/main/Demo%20Images/IMG_8935.jpeg" alt="alt text" width="390" height="844" hspace=20 vspace=20>
 </p>
 
-### And finally
-The about screen for claim the copyright of this application
-
-<p align="center">
-<img src="https://github.com/bremengnaht/SteamFeeds/blob/main/Demo%20Images/IMG_8936.PNG" alt="alt text" width="390" height="844" hspace=20 vspace=20 >
-</p>
-
 ## Frameworks
 UIKit, Core Data, WebKit, SafariServices
